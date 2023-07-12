@@ -21,10 +21,10 @@ add_compile_definitions(TEST_DATA_ROOT_DIR="${TEST_DATA_ROOT_DIR}")
 add_compile_definitions(TEST_OUTPUT_ROOT_DIR="${TEST_EXAMPLE_ROOT_DIR}/output/")
 
 
-add_library(catch_main STATIC catch_main.cpp)
+add_library(catch_main STATIC catch_main.cpp )
 target_link_libraries(catch_main PUBLIC Catch2::Catch2)
 target_link_libraries(catch_main PRIVATE project_options)
-target_link_options(catch_main INTERFACE $<$<CXX_COMPILER_ID:GNU>:-pthread -fconcepts-diagnostics-depth=1>)
+target_link_options(catch_main INTERFACE $<$<CXX_COMPILER_ID:GNU>:-pthread -fconcepts-diagnostics-depth=2>)
 target_include_directories(catch_main
     INTERFACE ${CSVPARSER_INCLUDE_DIR}
 )
@@ -47,6 +47,7 @@ set(UNITTEST_SOURCES
     "mis_tests.cpp" 
     "pagerank_tests.cpp"
     "mst_tests.cpp"
+    "sgb_tests.cpp"
 )
 
 foreach(SOURCE IN LISTS UNITTEST_SOURCES)
